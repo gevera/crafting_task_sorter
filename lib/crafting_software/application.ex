@@ -8,6 +8,13 @@ defmodule CraftingSoftware.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      # Plug.Cowboy.child_spec(
+      #   scheme: :http,
+      #   plug: CraftingSoftware.HttpEndpoint,
+      #   options: [port: 4000]
+      # )
+      {Plug.Cowboy,
+       scheme: :http, plug: CraftingSoftware.Infrastructure.HttpEndpoint, options: [port: 4000]}
       # Starts a worker by calling: CraftingSoftware.Worker.start_link(arg)
       # {CraftingSoftware.Worker, arg}
     ]
